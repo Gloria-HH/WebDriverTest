@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="BusinessFlow" >
+	<test name="BusinessFlow on OS X">
+		<classes>
+			<class name="com.demo.HomeTest"></class>
+			<class name="com.demo.LoginTest"></class>
+		</classes>
+	</test>
+</suite>

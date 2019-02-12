@@ -33,11 +33,7 @@ public abstract class BasePage {
 	}
 
 	public BasePage(BasePage parent) {
-		this();
-	}
-
-	public BasePage(Boolean navigate) {
-		this(null, navigate);
+		this(parent, false);
 	}
 
 	public BasePage(BasePage parent, Boolean navigate) {

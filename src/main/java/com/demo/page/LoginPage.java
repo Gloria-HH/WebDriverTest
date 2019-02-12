@@ -22,6 +22,7 @@ public class LoginPage extends BasePage {
 
 	@FindBy(className = "flash-error")
 	WebElement errorBox;
+	
 
 	@Override
 	public String getUrl() {
@@ -32,14 +33,15 @@ public class LoginPage extends BasePage {
 
 	}
 
-	public LoginPage(Boolean navigate) {
-		super(navigate);
+	public LoginPage(BasePage parent) {
+		super(parent);
 	}
 
-	public void login(String userName, String password) {
+	public AccoutPage login(String userName, String password) {
 		this.username.sendKeys(userName);
 		this.password.sendKeys(password);
 		this.signIn.click();
+		return new AccoutPage(this);
 
 	}
 

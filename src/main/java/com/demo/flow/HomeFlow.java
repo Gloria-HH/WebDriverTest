@@ -23,18 +23,19 @@ public class HomeFlow extends BaseFlow<HomePage> {
 	}
 
 	@Override
-	BaseFlow<HomePage> withStartPage(HomePage basePage) {
+	public BaseFlow<HomePage> withStartPage(HomePage basePage) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public void close() {
-		startPage.close();
+		if (homePage != null)
+			homePage.close();
 	}
 
 	public SearchPage search(String keyword) {
 		homePage.search(keyword);
-		return new SearchPage();
+		return new SearchPage(homePage);
 	}
 }

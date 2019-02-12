@@ -33,7 +33,7 @@ public class HomePage extends BasePage {
 
 	public LoginPage navigateToLoginPage() {
 		signIn.click();
-		return new LoginPage();
+		return new LoginPage(this);
 	}
 	
 	public  void search(String keyword) {
