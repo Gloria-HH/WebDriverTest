@@ -4,7 +4,11 @@
 	<test name="BusinessFlow on OS X">
 		<classes>
 		<!-- 	<class name="com.demo.HomeTest"></class> -->
-			<class name="com.demo.LoginTest"></class>
+			<class name="com.demo.LoginTest">
+				<methods>
+					<include name="loginPass" />
+				</methods>
+			</class>
 		</classes>
 	</test>
 </suite>
