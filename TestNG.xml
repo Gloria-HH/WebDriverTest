@@ -5,9 +5,9 @@
 		<classes>
 		<!-- 	<class name="com.demo.HomeTest"></class> -->
 			<class name="com.demo.LoginTest">
-				<methods>
+				<!-- <methods>
 					<include name="loginPass" />
-				</methods>
+				</methods> -->
 			</class>
 		</classes>
 	</test>
