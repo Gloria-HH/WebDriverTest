@@ -3,7 +3,7 @@
 <suite name="BusinessFlow" >
 	<test name="BusinessFlow on OS X">
 		<classes>
-			<class name="com.demo.HomeTest"></class>
+		<!-- 	<class name="com.demo.HomeTest"></class> -->
 			<class name="com.demo.LoginTest"></class>
 		</classes>
 	</test>
