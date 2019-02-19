@@ -77,16 +77,16 @@
 	       </configuration>
 	     </plugin>
   		<!-- jacoco plugin -->
-            <plugin>
+            <!-- <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.7.9</version>
                 <executions>
                     <execution>
-                        <!--
+                        
                         在maven的initialize阶段，将Jacoco的runtime agent作为VM的一个参数
                         传给被测程序，用于监控JVM中的调用。
-                        -->
+                       
                         <id>default-prepare-agent</id>
                         <goals>
                             <goal>prepare-agent</goal>
@@ -98,11 +98,11 @@
                             <propertyName>surefireArgLine</propertyName>
                         </configuration>
                     </execution>
-                    <!--
+                    
                     在程序的verify阶段，执行report测试的程序。
                     文件的输入为perpare-agent阶段中设置或者默认的jacoco.exec.
                     参数 includes和excludes可用来选定report中过滤的类。
-                    -->
+                   
                     <execution>
                         <id>default-report</id>
                         <phase>test</phase>
@@ -115,7 +115,7 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin> -->
   	</plugins>
   </build>
   
