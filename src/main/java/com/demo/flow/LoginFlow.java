@@ -1,15 +1,13 @@
 package com.demo.flow;
 
-import com.demo.page.AccoutPage;
 import com.demo.page.BasePage;
 import com.demo.page.LoginPage;
 import com.demo.param.LoginParamter;
 
-public class LoginFlow extends BaseFlow<LoginPage> {
+public class LoginFlow extends BaseFlow {
 
 	// private LoginPage loginPage;
 	private LoginParamter loginParamter;
-	private BasePage loginResult;
 
 	public LoginFlow() {
 
@@ -21,19 +19,18 @@ public class LoginFlow extends BaseFlow<LoginPage> {
 	}
 
 	public void login() {
-		 startPage.login(loginParamter.getUserName(),
-				loginParamter.getPassword());
+		if (startPage instanceof LoginPage) {
+			endPage = ((LoginPage) startPage).login(loginParamter.getUserName(), loginParamter.getPassword());
+		}
 	}
 
 	@Override
 	public void execute() {
-		loginResult=startPage.login(loginParamter.getUserName(),
-				loginParamter.getPassword());
-		setEndPage(loginResult);
+		endPage = ((LoginPage) startPage).login(loginParamter.getUserName(), loginParamter.getPassword());
 	}
 
 	@Override
-	public BaseFlow<LoginPage> withStartPage(LoginPage basePage) {
+	public BaseFlow withStartPage(BasePage basePage) {
 		startPage = basePage;
 		return this;
 	}
@@ -42,7 +39,6 @@ public class LoginFlow extends BaseFlow<LoginPage> {
 	public void close() {
 		startPage.close();
 	}
-	
 	
 
 }

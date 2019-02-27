@@ -15,7 +15,7 @@ public class SearchPage extends BasePage {
 	private WebElement search;
 
 	@FindBy(css = "div.d-flex.flex-column.flex-md-row.flex-justify-between.border-bottom.pb-3.position-relative")
-	private WebElement resultNum;
+	private WebElement resultInfo;
 	@FindBy(css = "div.blankslate")
 	private WebElement noResult;
 
@@ -27,13 +27,12 @@ public class SearchPage extends BasePage {
 		super(parent);
 	}
 
-	public String getResultNum() {
-		return resultNum.getText();
+	public String getResult() {
+		return resultInfo.getText();
 	}
 
 	@Override
 	public String getUrl() {
-		System.out.println(driver.getCurrentUrl());
 		if (StringUtils.isBlank(search.getText())) {
 			return Constants.SEARCH;
 		}

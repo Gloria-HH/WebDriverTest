@@ -1,10 +1,11 @@
 package com.demo.flow;
 
+import com.demo.page.AccoutPage;
 import com.demo.page.BasePage;
 import com.demo.page.SearchPage;
 import com.demo.param.SearchParameter;
 
-public class SearchFlow extends BaseFlow<SearchPage> {
+public class SearchFlow extends BaseFlow {
 
 	private SearchParameter searchParameter;
 
@@ -16,15 +17,17 @@ public class SearchFlow extends BaseFlow<SearchPage> {
 	}
 
 	@Override
-	public BaseFlow<SearchPage> withStartPage(SearchPage basePage) {
+	public BaseFlow withStartPage(BasePage basePage) {
 		startPage = basePage;
 		return this;
 	}
 
 	@Override
 	public void execute() {
-		startPage.search(searchParameter.getSearchContent());
-
+		if(startPage instanceof AccoutPage ) {
+			((AccoutPage)startPage).search(searchParameter.getSearchContent());
+		}
+		
 	}
 
 	@Override

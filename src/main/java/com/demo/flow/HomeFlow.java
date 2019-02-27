@@ -1,10 +1,11 @@
 package com.demo.flow;
 
+import com.demo.page.BasePage;
 import com.demo.page.HomePage;
 import com.demo.page.LoginPage;
 import com.demo.page.SearchPage;
 
-public class HomeFlow extends BaseFlow<HomePage> {
+public class HomeFlow extends BaseFlow {
 
 	private HomePage homePage = new HomePage();
 
@@ -23,7 +24,7 @@ public class HomeFlow extends BaseFlow<HomePage> {
 	}
 
 	@Override
-	public BaseFlow<HomePage> withStartPage(HomePage basePage) {
+	public BaseFlow withStartPage(BasePage basePage) {
 		// TODO Auto-generated method stub
 		return null;
 	}

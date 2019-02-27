@@ -15,8 +15,8 @@ public class LoginTest {
 	public void loginPass() {
 		HomeFlow homeFlow = new HomeFlow();
 		LoginParamter loginParamter = new LoginParamter();
-		loginParamter.setUserName("testUseSele");
-		loginParamter.setPassword("!qwer1234!?");
+		loginParamter.setUserName("XXX");
+		loginParamter.setPassword("XXX");
 		LoginFlow loginFlow = new LoginFlow(loginParamter);
 		loginFlow.withStartPage(homeFlow.navigateToLogin()).execute();
 		
@@ -27,8 +27,8 @@ public class LoginTest {
 	public void loginFailureWithErrorUsername() {
 		HomeFlow homeFlow = new HomeFlow();
 		LoginParamter loginParamter = new LoginParamter();
-		loginParamter.setUserName("testUseSe");
-		loginParamter.setPassword("!qwer1234!?");
+		loginParamter.setUserName("XXX");
+		loginParamter.setPassword("XXX");
 		LoginFlow loginFlow = new LoginFlow(loginParamter);
 		loginFlow.withStartPage(homeFlow.navigateToLogin()).execute();
 		Assertions.assertThat(loginFlow.startPage.getErrorMessage()).isEqualTo("Incorrect username or password.");
@@ -39,8 +39,8 @@ public class LoginTest {
 	public void loginFailureWithErrorPassword() {
 		HomeFlow homeFlow = new HomeFlow();
 		LoginParamter loginParamter = new LoginParamter();
-		loginParamter.setUserName("testUseSele");
-		loginParamter.setPassword("!qwer1234");
+		loginParamter.setUserName("XXX");
+		loginParamter.setPassword("XXX");
 		LoginFlow loginFlow = new LoginFlow(loginParamter);
 		loginFlow.withStartPage(homeFlow.navigateToLogin()).execute();
 		Assertions.assertThat(loginFlow.startPage.getErrorMessage()).isEqualTo("Incorrect username or password.");

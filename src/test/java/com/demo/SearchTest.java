@@ -14,6 +14,7 @@ public class SearchTest {
 
 	@Test
 	public void loginSearchHasResults() {
+		//登录
 		homeFlow = new HomeFlow();
 		LoginParamter loginParamter = new LoginParamter();
 		loginParamter.setUserName("testUseSele");
@@ -21,10 +22,11 @@ public class SearchTest {
 		LoginFlow loginFlow = new LoginFlow(loginParamter);
 		loginFlow.withStartPage(homeFlow.navigateToLogin()).execute();
 
+		//查询
 		SearchParameter searchParameter = new SearchParameter();
 		searchParameter.setSearchContent("test");
 		SearchFlow searchFlow = new SearchFlow(searchParameter);
-		//searchFlow.withStartPage(loginFlow.getEndPage());
+		searchFlow.withStartPage(loginFlow.getEndPage()).execute();
 
 	}
 

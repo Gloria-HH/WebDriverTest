@@ -15,9 +15,8 @@ public class HomeTest {
 	public void homePageSearchHasResult() {
 		homeFlow = new HomeFlow();
 		SearchPage searchPage = homeFlow.search("TDD");
-		Assertions.assertThat(searchPage.getResultNum()).contains(
+		Assertions.assertThat(searchPage.getResult()).contains(
 				"repository result");
-		 homeFlow.close();
 
 	}
 
@@ -28,7 +27,6 @@ public class HomeTest {
 		SearchPage searchPage = homeFlow.search(searchContent);
 		Assertions.assertThat(searchPage.getNoResultMsg()).contains(
 				searchContent);
-		 homeFlow.close();
 
 	}
 

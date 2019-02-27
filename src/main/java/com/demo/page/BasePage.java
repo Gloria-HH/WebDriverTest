@@ -134,5 +134,8 @@ public abstract class BasePage {
 			break;
 		}
 	}
+	public String getErrorMessage() {
+		return null;
+	}
 
 }
