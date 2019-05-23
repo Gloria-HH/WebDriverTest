@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 
-public class AccoutPage extends BasePage {
+public class AccountPage extends BasePage {
 
 	@FindBy(css = "strong.css-truncate-target")
 	private WebElement userName;
@@ -13,11 +13,11 @@ public class AccoutPage extends BasePage {
 	@CacheLookup
 	private WebElement search;
 
-	public AccoutPage() {
+	public AccountPage() {
 		super();
 	}
 
-	public AccoutPage(BasePage basePage) {
+	public AccountPage(BasePage basePage) {
 		super(basePage);
 	}
 

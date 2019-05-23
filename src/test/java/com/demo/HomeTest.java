@@ -1,38 +1,49 @@
 package com.demo;
 
-import org.assertj.core.api.Assertions;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.Test;
-
-import com.demo.flow.HomeFlow;
+import com.demo.common.Constants;
+import com.demo.common.Driver;
+import com.demo.page.HomePage;
 import com.demo.page.SearchPage;
+import org.assertj.core.api.Assertions;
+import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 public class HomeTest {
 
-	private HomeFlow homeFlow;
+    private HomePage homePage;
+    private WebDriver driver;
 
-	@Test
-	public void homePageSearchHasResult() {
-		homeFlow = new HomeFlow();
-		SearchPage searchPage = homeFlow.search("TDD");
-		Assertions.assertThat(searchPage.getResult()).contains(
-				"repository result");
+    @BeforeMethod
+    public void setup() {
+        Driver.start();
+        driver.get(Constants.BASE_URL);
+        driver = Driver.getCurrentDriver();
+        homePage = new HomePage(driver);
+    }
 
-	}
 
-	@Test
-	public void homePageSearchHasNoResult() {
-		homeFlow = new HomeFlow();
-		String searchContent = "2523test";
-		SearchPage searchPage = homeFlow.search(searchContent);
-		Assertions.assertThat(searchPage.getNoResultMsg()).contains(
-				searchContent);
+    @Test
+    public void homePageSearchHasResult() {
+        SearchPage searchPage = homePage.search("TDD");
+        Assertions.assertThat(searchPage.getResult()).contains(
+                "repository result");
 
-	}
+    }
 
-	@AfterClass
-	public void after() {
-		homeFlow.close();
-	}
+    @Test
+    public void homePageSearchHasNoResult() {
+        String searchContent = "2523test";
+        SearchPage searchPage = homePage.search(searchContent);
+        Assertions.assertThat(searchPage.getNoResultMsg()).contains(
+                searchContent);
+
+    }
+
+    @AfterClass
+    public void after() {
+        homePage.close();
+    }
 
 }

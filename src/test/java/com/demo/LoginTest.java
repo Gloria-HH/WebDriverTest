@@ -1,54 +1,49 @@
 package com.demo;
 
+import com.demo.page.AccountPage;
+import com.demo.page.HomePage;
+import com.demo.page.LoginPage;
 import org.assertj.core.api.Assertions;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import com.demo.flow.HomeFlow;
-import com.demo.flow.LoginFlow;
-import com.demo.param.LoginParamter;
 
 public class LoginTest {
 
-	private HomeFlow homeFlow;
+    private HomePage homePage;
+    private LoginPage loginPage;
 
-	@Test
-	public void loginPass() {
-		homeFlow = new HomeFlow();
-		LoginParamter loginParamter = new LoginParamter();
-		loginParamter.setUserName("testUseSele");
-		loginParamter.setPassword("!qwer1234!?");
-		LoginFlow loginFlow = new LoginFlow(loginParamter);
-		loginFlow.withStartPage(homeFlow.navigateToLogin()).execute();
-		Assertions.assertThat("GitHub"
-				.equals(loginFlow.getEndPage().getTitle()));
+    @BeforeMethod
+    public void setup() {
+        homePage = new HomePage();
+        loginPage = homePage.navigateToLoginPage();
+    }
 
-		loginFlow.close();
-	}
+    @Test
+    public void loginPass() {
+        AccountPage accountPage = loginPage.loginSuccess("XXX", "XX");
+        Assertions.assertThat("GitHub"
+                .equals(accountPage.getTitle()));
 
-	@Test
-	public void loginFailureWithErrorUsername() {
-		homeFlow = new HomeFlow();
-		LoginParamter loginParamter = new LoginParamter();
-		loginParamter.setUserName("XXX");
-		loginParamter.setPassword("XXX");
-		LoginFlow loginFlow = new LoginFlow(loginParamter);
-		loginFlow.withStartPage(homeFlow.navigateToLogin()).execute();
-		Assertions.assertThat(loginFlow.startPage.getErrorMessage()).isEqualTo(
+    }
+
+    @Test
+    public void loginFailureWithErrorUsername() {
+        LoginPage resultPage = loginPage.loginFailure("XXX@sina.com", "XXX");
+		Assertions.assertThat(resultPage.getErrorMessage()).isEqualTo(
 				"Incorrect username or password.");
-		loginFlow.close();
-	}
+    }
 
-	@Test
-	public void loginFailureWithErrorPassword() {
-		homeFlow = new HomeFlow();
-		LoginParamter loginParamter = new LoginParamter();
-		loginParamter.setUserName("XXX");
-		loginParamter.setPassword("XXX");
-		LoginFlow loginFlow = new LoginFlow(loginParamter);
-		loginFlow.withStartPage(homeFlow.navigateToLogin()).execute();
-		Assertions.assertThat(loginFlow.startPage.getErrorMessage()).isEqualTo(
-				"Incorrect username or password.");
-		loginFlow.close();
-	}
+    @Test
+    public void loginFailureWithErrorPassword() {
+        LoginPage resultPage = loginPage.loginFailure("XXX@sina.com", "111");
+        Assertions.assertThat(resultPage.getErrorMessage()).isEqualTo(
+                "Incorrect username or password.");
+    }
+
+    @AfterMethod
+    public void after() {
+        loginPage.close();
+    }
 
 }

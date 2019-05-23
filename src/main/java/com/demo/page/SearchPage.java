@@ -19,9 +19,6 @@ public class SearchPage extends BasePage {
 	@FindBy(css = "div.blankslate")
 	private WebElement noResult;
 
-	public SearchPage() {
-
-	}
 
 	public SearchPage(BasePage parent) {
 		super(parent);
@@ -33,10 +30,11 @@ public class SearchPage extends BasePage {
 
 	@Override
 	public String getUrl() {
-		if (StringUtils.isBlank(search.getText())) {
-			return Constants.SEARCH;
-		}
-		return Constants.SEARCH + search.getText();
+		return Constants.SEARCH;
+//		if (StringUtils.isBlank(search.getText())) {
+//			return Constants.SEARCH;
+//		}
+//		return Constants.SEARCH + search.getText();
 	}
 
 	public String getNoResultMsg() {

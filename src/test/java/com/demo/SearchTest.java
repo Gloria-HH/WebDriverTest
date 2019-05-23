@@ -1,38 +1,42 @@
 package com.demo;
 
+import com.demo.page.AccountPage;
+import com.demo.page.HomePage;
+import com.demo.page.LoginPage;
+import org.assertj.core.api.Assertions;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import com.demo.flow.HomeFlow;
-import com.demo.flow.LoginFlow;
-import com.demo.flow.SearchFlow;
-import com.demo.param.LoginParamter;
-import com.demo.param.SearchParameter;
-
 public class SearchTest {
-	private HomeFlow homeFlow;
+    private HomePage homePage;
 
-	@Test
-	public void loginSearchHasResults() {
-		//登录
-		homeFlow = new HomeFlow();
-		LoginParamter loginParamter = new LoginParamter();
-		loginParamter.setUserName("testUseSele");
-		loginParamter.setPassword("!qwer1234!?");
-		LoginFlow loginFlow = new LoginFlow(loginParamter);
-		loginFlow.withStartPage(homeFlow.navigateToLogin()).execute();
+    @BeforeMethod
+    public void HomePage() {
+        homePage = new HomePage();
+    }
 
-		//查询
-		SearchParameter searchParameter = new SearchParameter();
-		searchParameter.setSearchContent("test");
-		SearchFlow searchFlow = new SearchFlow(searchParameter);
-		searchFlow.withStartPage(loginFlow.getEndPage()).execute();
+    @Test
+    public void loginSearchHasResults() {
+        //登录
+        LoginPage loginPage = homePage.navigateToLoginPage();
+        AccountPage accountPage = loginPage.loginSuccess("zhihuilvy@sina.com", "zvn4JCCKT8z7tZH");
+        Assertions.assertThat("GitHub"
+                .equals(accountPage.getTitle()));
 
-	}
 
-	@AfterClass
-	public void after() {
-		homeFlow.close();
-	}
+        //查询
+//        SearchPage searchPage=
+//        SearchParameter searchParameter = new SearchParameter();
+//        searchParameter.setSearchContent("test");
+//        SearchFlow searchFlow = new SearchFlow(searchParameter);
+//        searchFlow.withStartPage(loginFlow.getEndPage()).execute();
+
+    }
+
+    @AfterClass
+    public void after() {
+        homePage.close();
+    }
 
 }

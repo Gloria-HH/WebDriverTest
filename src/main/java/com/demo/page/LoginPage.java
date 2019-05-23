@@ -8,45 +8,51 @@ import com.demo.common.Constants;
 
 public class LoginPage extends BasePage {
 
-	@FindBy(id = "login_field")
-	@CacheLookup
-	private WebElement username;
+    @FindBy(id = "login_field")
+    @CacheLookup
+    private WebElement username;
 
-	@FindBy(id = "password")
-	@CacheLookup
-	private WebElement password;
+    @FindBy(id = "password")
+    @CacheLookup
+    private WebElement password;
 
-	@FindBy(name = "commit")
-	@CacheLookup
-	private WebElement signIn;
+    @FindBy(name = "commit")
+    @CacheLookup
+    private WebElement signIn;
 
-	@FindBy(className = "flash-error")
-	WebElement errorBox;
-	
+    @FindBy(className = "flash-error")
+    WebElement errorBox;
 
-	@Override
-	public String getUrl() {
-		return Constants.LOGIN;
-	}
 
-	public LoginPage() {
+    @Override
+    public String getUrl() {
+        return Constants.LOGIN;
+    }
 
-	}
+    public LoginPage() {
 
-	public LoginPage(BasePage parent) {
-		super(parent);
-	}
+    }
 
-	public AccoutPage login(String userName, String password) {
-		this.username.sendKeys(userName);
-		this.password.sendKeys(password);
-		this.signIn.click();
-		return new AccoutPage(this);
+    public LoginPage(BasePage parent) {
+        super(parent);
+    }
 
-	}
+    public AccountPage loginSuccess(String userName, String password) {
+        this.username.sendKeys(userName);
+        this.password.sendKeys(password);
+        this.signIn.click();
+        return new AccountPage(this);
+    }
 
-	public String getErrorMessage() {
-		return errorBox.getText();
-	}
+    public LoginPage loginFailure(String userName, String password) {
+        this.username.sendKeys(userName);
+        this.password.sendKeys(password);
+        this.signIn.click();
+        return this;
+    }
+
+    public String getErrorMessage() {
+        return errorBox.getText();
+    }
 
 }
