@@ -30,19 +30,23 @@ public abstract class BasePage {
 
     public WebDriver driver;
 
-    public BasePage() {
+    /*public BasePage() {
         this(null, true);
+    }*/
+
+    public BasePage(){
+        PageFactory.initElements(driver, this);
     }
     public BasePage(WebDriver webDriver){
-        this.driver = driver;
+        this.driver = webDriver;
         PageFactory.initElements(driver, this);
     }
 
-    public BasePage(BasePage parent) {
-        this(parent, false);
-    }
+//    public BasePage(BasePage parent) {
+//        this(parent, false);
+//    }
 
-    public BasePage(BasePage parent, Boolean navigate) {
+    /*public BasePage(BasePage parent, Boolean navigate) {
         Long start = System.currentTimeMillis();
         System.out.println(start);
         if (driver == null) {
@@ -63,7 +67,7 @@ public abstract class BasePage {
         PageFactory.initElements(this.driver, this);
         Long end = System.currentTimeMillis();
         System.out.println("end-start=" + (end - start));
-    }
+    }*/
 
     /**
      * Returns the absolute url to open the page.

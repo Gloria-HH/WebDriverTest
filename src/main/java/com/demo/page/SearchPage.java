@@ -2,6 +2,7 @@ package com.demo.page;
 
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
@@ -20,8 +21,8 @@ public class SearchPage extends BasePage {
 	private WebElement noResult;
 
 
-	public SearchPage(BasePage parent) {
-		super(parent);
+	public SearchPage(WebDriver webDriver) {
+		super(webDriver);
 	}
 
 	public String getResult() {

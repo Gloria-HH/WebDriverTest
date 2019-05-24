@@ -1,5 +1,6 @@
 package com.demo;
 
+import com.demo.common.Constants;
 import com.demo.page.AccountPage;
 import com.demo.page.HomePage;
 import com.demo.page.LoginPage;
@@ -8,20 +9,21 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class LoginTest {
+public class LoginTest extends  BaseTest{
 
     private HomePage homePage;
     private LoginPage loginPage;
 
     @BeforeMethod
     public void setup() {
-        homePage = new HomePage();
+        driver.get(Constants.BASE_URL);
+        homePage = new HomePage(driver);
         loginPage = homePage.navigateToLoginPage();
     }
 
     @Test
     public void loginPass() {
-        AccountPage accountPage = loginPage.loginSuccess("XXX", "XX");
+        AccountPage accountPage = loginPage.loginSuccess("&&", "111");
         Assertions.assertThat("GitHub"
                 .equals(accountPage.getTitle()));
 

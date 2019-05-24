@@ -1,5 +1,7 @@
 package com.demo.page;
 
+import com.demo.common.Constants;
+import com.demo.common.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -10,7 +12,6 @@ import org.openqa.selenium.support.FindBy;
 public class HomePage extends BasePage {
 
 
-
     @FindBy(css = "a.HeaderMenu-link.no-underline.mr-3")
     @CacheLookup
     private WebElement signIn;
@@ -19,24 +20,22 @@ public class HomePage extends BasePage {
 //    @CacheLookup
     private WebElement search;
 
-    public HomePage(){super();}
 
-
-    public HomePage(WebDriver webDriver){super(webDriver);}
-
-
+    public HomePage(WebDriver driver) {
+        super(driver);
+    }
 
 
     public LoginPage navigateToLoginPage() {
         signIn.click();
-        return new LoginPage(this);
+        return new LoginPage(driver);
     }
 
     public SearchPage search(String keyword) {
         search = find(By.name("q"));
         search.sendKeys(keyword);
         search.sendKeys(Keys.ENTER);
-        return new SearchPage(this);
+        return new SearchPage(driver);
     }
 
 

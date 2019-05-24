@@ -1,5 +1,6 @@
 package com.demo;
 
+import com.demo.common.Constants;
 import com.demo.page.AccountPage;
 import com.demo.page.HomePage;
 import com.demo.page.LoginPage;
@@ -8,19 +9,21 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class SearchTest {
+public class SearchTest extends BaseTest{
     private HomePage homePage;
 
-    @BeforeMethod
-    public void HomePage() {
-        homePage = new HomePage();
-    }
+//    @BeforeMethod
+//    public void HomePage() {
+//        homePage = new HomePage();
+//    }
 
     @Test
     public void loginSearchHasResults() {
+        driver.get(Constants.BASE_URL);
+        homePage = new HomePage(driver);
         //登录
         LoginPage loginPage = homePage.navigateToLoginPage();
-        AccountPage accountPage = loginPage.loginSuccess("zhihuilvy@sina.com", "zvn4JCCKT8z7tZH");
+        AccountPage accountPage = loginPage.loginSuccess("&&", "111");
         Assertions.assertThat("GitHub"
                 .equals(accountPage.getTitle()));
 

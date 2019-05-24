@@ -1,5 +1,6 @@
 package com.demo.page;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
@@ -29,19 +30,16 @@ public class LoginPage extends BasePage {
         return Constants.LOGIN;
     }
 
-    public LoginPage() {
 
-    }
-
-    public LoginPage(BasePage parent) {
-        super(parent);
+    public LoginPage(WebDriver webDriver) {
+        super(webDriver);
     }
 
     public AccountPage loginSuccess(String userName, String password) {
         this.username.sendKeys(userName);
         this.password.sendKeys(password);
         this.signIn.click();
-        return new AccountPage(this);
+        return new AccountPage(driver);
     }
 
     public LoginPage loginFailure(String userName, String password) {

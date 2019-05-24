@@ -1,6 +1,7 @@
 package com.demo.page;
 
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
@@ -13,12 +14,9 @@ public class AccountPage extends BasePage {
 	@CacheLookup
 	private WebElement search;
 
-	public AccountPage() {
-		super();
-	}
 
-	public AccountPage(BasePage basePage) {
-		super(basePage);
+	public AccountPage(WebDriver webDriver) {
+		super(webDriver);
 	}
 
 	public String getUserName() {
