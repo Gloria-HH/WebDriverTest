@@ -2,6 +2,7 @@ package com.demo.page;
 
 import java.util.concurrent.TimeUnit;
 
+import com.demo.common.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -34,10 +35,13 @@ public abstract class BasePage {
         this(null, true);
     }*/
 
-    public BasePage(){
+    public BasePage() {
+        driver = Driver.getCurrentDriver();
+        navigateTo(getUrl());
         PageFactory.initElements(driver, this);
     }
-    public BasePage(WebDriver webDriver){
+
+    public BasePage(WebDriver webDriver) {
         this.driver = webDriver;
         PageFactory.initElements(driver, this);
     }

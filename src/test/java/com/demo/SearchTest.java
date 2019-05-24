@@ -9,18 +9,16 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class SearchTest extends BaseTest{
+public class SearchTest {
     private HomePage homePage;
 
-//    @BeforeMethod
-//    public void HomePage() {
-//        homePage = new HomePage();
-//    }
+    @BeforeMethod
+    public void HomePage() {
+        homePage = new HomePage();
+    }
 
     @Test
     public void loginSearchHasResults() {
-        driver.get(Constants.BASE_URL);
-        homePage = new HomePage(driver);
         //登录
         LoginPage loginPage = homePage.navigateToLoginPage();
         AccountPage accountPage = loginPage.loginSuccess("&&", "111");

@@ -23,6 +23,9 @@ public class Driver {
     }
 
     public static WebDriver getCurrentDriver() {
+        if (driver == null) {
+            start();
+        }
         return driver;
     }
 

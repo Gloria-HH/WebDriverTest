@@ -20,10 +20,15 @@ public class HomePage extends BasePage {
 //    @CacheLookup
     private WebElement search;
 
-
-    public HomePage(WebDriver driver) {
-        super(driver);
+    public HomePage(){
+        super();
     }
+
+
+    public HomePage(WebDriver webDriver){
+        super(webDriver);
+    }
+
 
 
     public LoginPage navigateToLoginPage() {
@@ -33,10 +38,14 @@ public class HomePage extends BasePage {
 
     public SearchPage search(String keyword) {
         search = find(By.name("q"));
+        search.clear();
         search.sendKeys(keyword);
         search.sendKeys(Keys.ENTER);
         return new SearchPage(driver);
     }
 
-
+    @Override
+    public String getUrl() {
+        return Constants.BASE_URL;
+    }
 }

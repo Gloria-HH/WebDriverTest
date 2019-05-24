@@ -9,15 +9,14 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class LoginTest extends  BaseTest{
+public class LoginTest {
 
     private HomePage homePage;
     private LoginPage loginPage;
 
     @BeforeMethod
     public void setup() {
-        driver.get(Constants.BASE_URL);
-        homePage = new HomePage(driver);
+        homePage = new HomePage();
         loginPage = homePage.navigateToLoginPage();
     }
 
