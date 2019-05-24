@@ -11,7 +11,7 @@ public class HomeTest  {
 
     private HomePage homePage;
 
-    @BeforeClass
+    /*@BeforeClass
     public void setup() {
         homePage = new HomePage();
     }
@@ -36,6 +36,6 @@ public class HomeTest  {
     @AfterClass
     public void after() {
         homePage.close();
-    }
+    }*/
 
 }

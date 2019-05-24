@@ -15,14 +15,10 @@ public class LoginPage extends BasePage {
     private By errorBox = By.id("js-flash-container");
 
 
-    @Override
-    public String getUrl() {
-        return Constants.LOGIN;
+    public LoginPage() {
+        super();
     }
 
-    public LoginPage(WebDriver driver) {
-        super(driver);
-    }
 
     public AccountPage loginSuccess(String userName, String password) {
         find(username).sendKeys(userName);
@@ -41,5 +37,10 @@ public class LoginPage extends BasePage {
     public String getErrorMessage() {
         return find(errorBox).getText();
     }
+
+//    @Override
+//    public String getUrl() {
+//        return Constants.LOGIN;
+//    }
 
 }

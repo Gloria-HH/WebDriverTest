@@ -22,7 +22,7 @@ public class HomePage extends BasePage {
 
     public LoginPage navigateToLoginPage() {
         click(signIn);
-        return new LoginPage(driver);
+        return new LoginPage();
     }
 
     public SearchPage search(String keyword) {

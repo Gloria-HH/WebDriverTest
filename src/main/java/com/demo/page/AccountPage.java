@@ -19,9 +19,6 @@ public class AccountPage extends BasePage {
 		super();
 	}
 
-	public AccountPage(WebDriver webDriver) {
-		super(webDriver);
-	}
 
 	public String getUserName() {
 		return userName.getText();

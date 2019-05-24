@@ -12,11 +12,6 @@ public class LoginTest {
     private HomePage homePage;
     private LoginPage loginPage;
 
-//    @BeforeClass
-//    public void setup1(){
-//        homePage = new HomePage();
-//    }
-
 
     @BeforeMethod
     public void setup() {
@@ -29,14 +24,13 @@ public class LoginTest {
         AccountPage accountPage = loginPage.loginSuccess("&&", "111");
         Assertions.assertThat("GitHub"
                 .equals(accountPage.getTitle()));
-
     }
 
     @Test
     public void loginFailureWithErrorUsername() {
         LoginPage resultPage = loginPage.loginFailure("XXX@sina.com", "XXX");
-		Assertions.assertThat(resultPage.getErrorMessage()).isEqualTo(
-				"Incorrect username or password.");
+        Assertions.assertThat(resultPage.getErrorMessage()).isEqualTo(
+                "Incorrect username or password.");
     }
 
     @Test

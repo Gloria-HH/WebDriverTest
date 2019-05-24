@@ -24,13 +24,9 @@ public abstract class BasePage {
 
     public WebDriver driver;
 
-    /*public BasePage() {
-        this(null, true);
-    }*/
 
     public BasePage() {
         driver = Driver.getCurrentDriver();
-        System.out.println(this.driver.getCurrentUrl());
         if (StringUtils.isNotBlank(getUrl())) {
             navigateTo(getUrl());
         }
@@ -39,7 +35,6 @@ public abstract class BasePage {
 
     public BasePage(WebDriver webDriver) {
         this.driver = webDriver;
-        System.out.println(this.driver.getCurrentUrl());
         PageFactory.initElements(driver, this);
     }
 

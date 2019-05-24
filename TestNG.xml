@@ -4,14 +4,7 @@
 	<test name="BusinessFlow on OS X">
 		<classes>
 		<!-- 	<class name="com.demo.HomeTest"></class> -->
-			<class name="com.demo.LoginTest">
-				<methods>
-					<include name=".*Pass" />
-				</methods>
-			</class>
+			<class name="com.demo.LoginTest"></class>
 		</classes>
 	</test>
-	<listeners>
-		<listener class-name="org.uncommons.reportng.HTMLReporter"></listener>
-	</listeners>
 </suite>
