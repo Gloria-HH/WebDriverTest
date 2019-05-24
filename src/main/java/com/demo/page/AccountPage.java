@@ -15,6 +15,10 @@ public class AccountPage extends BasePage {
 	private WebElement search;
 
 
+	public AccountPage() {
+		super();
+	}
+
 	public AccountPage(WebDriver webDriver) {
 		super(webDriver);
 	}

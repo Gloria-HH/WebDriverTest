@@ -5,14 +5,18 @@ import com.demo.page.AccountPage;
 import com.demo.page.HomePage;
 import com.demo.page.LoginPage;
 import org.assertj.core.api.Assertions;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 public class LoginTest {
 
     private HomePage homePage;
     private LoginPage loginPage;
+
+//    @BeforeClass
+//    public void setup1(){
+//        homePage = new HomePage();
+//    }
+
 
     @BeforeMethod
     public void setup() {
@@ -42,9 +46,9 @@ public class LoginTest {
                 "Incorrect username or password.");
     }
 
-    @AfterMethod
+    @AfterClass
     public void after() {
-        loginPage.close();
+        homePage.close();
     }
 
 }

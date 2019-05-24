@@ -11,37 +11,26 @@ import org.openqa.selenium.support.FindBy;
 
 public class HomePage extends BasePage {
 
+    private By signIn = By.xpath("//*[@href='/login']");
 
-    @FindBy(css = "a.HeaderMenu-link.no-underline.mr-3")
-    @CacheLookup
-    private WebElement signIn;
+    private By search = By.name("q");
 
-    //    @FindBy(name = "q")
-//    @CacheLookup
-    private WebElement search;
-
-    public HomePage(){
+    public HomePage() {
         super();
     }
 
 
-    public HomePage(WebDriver webDriver){
-        super(webDriver);
-    }
-
-
-
     public LoginPage navigateToLoginPage() {
-        signIn.click();
+        click(signIn);
         return new LoginPage(driver);
     }
 
     public SearchPage search(String keyword) {
-        search = find(By.name("q"));
-        search.clear();
-        search.sendKeys(keyword);
-        search.sendKeys(Keys.ENTER);
-        return new SearchPage(driver);
+        WebElement searchElement = find(search);
+        searchElement.clear();
+        searchElement.sendKeys(keyword);
+        searchElement.sendKeys(Keys.ENTER);
+        return new SearchPage();
     }
 
     @Override

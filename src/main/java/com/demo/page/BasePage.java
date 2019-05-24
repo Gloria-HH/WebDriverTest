@@ -1,18 +1,11 @@
 package com.demo.page;
 
-import java.util.concurrent.TimeUnit;
-
 import com.demo.common.Driver;
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.PageFactory;
-
-import com.demo.common.Constants;
 
 public abstract class BasePage {
     /**
@@ -37,41 +30,18 @@ public abstract class BasePage {
 
     public BasePage() {
         driver = Driver.getCurrentDriver();
-        navigateTo(getUrl());
+        System.out.println(this.driver.getCurrentUrl());
+        if (StringUtils.isNotBlank(getUrl())) {
+            navigateTo(getUrl());
+        }
         PageFactory.initElements(driver, this);
     }
 
     public BasePage(WebDriver webDriver) {
         this.driver = webDriver;
+        System.out.println(this.driver.getCurrentUrl());
         PageFactory.initElements(driver, this);
     }
-
-//    public BasePage(BasePage parent) {
-//        this(parent, false);
-//    }
-
-    /*public BasePage(BasePage parent, Boolean navigate) {
-        Long start = System.currentTimeMillis();
-        System.out.println(start);
-        if (driver == null) {
-            if (parent == null || parent.driver == null) {
-                instanceDriver();
-                driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
-            } else {
-                driver = parent.driver;
-            }
-
-        }
-        Long driverInitTime = System.currentTimeMillis();
-        System.out.println("driverInitTime-start=" + (driverInitTime - start));
-        if (navigate) {
-            navigateTo(getUrl());
-        }
-        System.out.println(this.getClass().getName());
-        PageFactory.initElements(this.driver, this);
-        Long end = System.currentTimeMillis();
-        System.out.println("end-start=" + (end - start));
-    }*/
 
     /**
      * Returns the absolute url to open the page.
@@ -79,7 +49,8 @@ public abstract class BasePage {
      * @return Absolute url for the page
      */
     public String getUrl() {
-        return Constants.BASE_URL;
+//        return Constants.BASE_URL;
+        return null;
     }
 
     public java.util.List<String> getAllErrors() {
@@ -134,26 +105,6 @@ public abstract class BasePage {
         driver = null;
     }
 
-    private void instanceDriver() {
-        String driverName = System.getProperty(WEBDRIVER_DRIVER_NAME,
-                "ChromeDriver");
-        switch (driverName) {
-            case "FireFoxDriver":
-                driver = new FirefoxDriver();
-                break;
-            case "InternetExplorerDriver":
-                driver = new InternetExplorerDriver();
-                break;
-            case "SafariDriver":
-                driver = new SafariDriver();
-                break;
-            case "ChromeDriver":
-                driver = new ChromeDriver();
-                break;
-            default:
-                break;
-        }
-    }
 
     public String getErrorMessage() {
         return null;
@@ -161,6 +112,10 @@ public abstract class BasePage {
 
     public WebElement find(By by) {
         return driver.findElement(by);
+    }
+
+    public void click(By by) {
+        driver.findElement(by).click();
     }
 
 
