@@ -1,0 +1,11 @@
+correctLogin:
+  username: XX
+  password: XX
+
+errorUsername:
+  username: XXX
+  password: xx
+
+errorPassword:
+  username: xxx
+  password: xxx

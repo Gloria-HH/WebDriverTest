@@ -22,7 +22,9 @@ public class AccountPage extends BasePage {
     }
 
     public void logout() {
-        find(detailInfo).click();
+        if (!find(logout).isDisplayed()) {
+            find(detailInfo).click();
+        }
         find(logout).click();
     }
 
