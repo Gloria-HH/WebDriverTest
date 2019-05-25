@@ -22,8 +22,8 @@ public class SearchPage extends BasePage {
 //	private WebElement noResult;
 
     private By keywords = By.name("q");
-    private By resultInfo = By.xpath("");
-    private By noResult = By.xpath("");
+    private By resultInfo = By.xpath("//div[contains(@class,'d-flex flex-column flex-md-row flex-justify-between border-bottom pb-3 position-relative')]");
+    private By noResult = By.xpath("//div[@class='blankslate']");
 
 
     public SearchPage() {

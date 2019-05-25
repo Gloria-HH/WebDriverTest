@@ -1,14 +1,14 @@
 package com.demo.param;
 
-public class LoginParamter {
+public class LoginParameter {
 	private String userName;
 	private String password;
 
-	public LoginParamter() {
+	public LoginParameter() {
 
 	}
 
-	public LoginParamter(String userName, String password) {
+	public LoginParameter(String userName, String password) {
 		this.userName = userName;
 		this.password = password;
 	}

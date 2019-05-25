@@ -1,6 +1,6 @@
 package com.demo.page;
 
-import com.demo.common.Driver;
+import com.demo.driver.Driver;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

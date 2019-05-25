@@ -1,16 +1,15 @@
 package com.demo;
 
-import com.demo.common.Driver;
-import org.openqa.selenium.WebDriver;
-import org.testng.annotations.BeforeClass;
+import com.demo.page.HomePage;
+import org.testng.annotations.AfterClass;
 
 public class BaseTest {
+    protected HomePage homePage;
 
-    protected static WebDriver driver;
-
-    @BeforeClass
-    public static void setUp() {
-        Driver.start();
-        driver = Driver.getCurrentDriver();
+    @AfterClass
+    public void after() {
+        if (homePage != null) {
+            homePage.close();
+        }
     }
 }

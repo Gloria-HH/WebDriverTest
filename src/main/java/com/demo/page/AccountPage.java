@@ -1,32 +1,38 @@
 package com.demo.page;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.CacheLookup;
-import org.openqa.selenium.support.FindBy;
 
 public class AccountPage extends BasePage {
-
-	@FindBy(css = "strong.css-truncate-target")
-	private WebElement userName;
-	@FindBy(name = "q")
-	@CacheLookup
-	private WebElement search;
+    private By detailInfo = By.xpath("//div[contains(@class,'Header-item position-relative mr-0')]");
+    private By userName = By.xpath("//strong[@class='css-truncate-target']");
+    private By logout = By.xpath("//button[@class='dropdown-item dropdown-signout']");
+    private By search = By.name("q");
 
 
-	public AccountPage() {
-		super();
-	}
+    public AccountPage() {
+        super();
+    }
 
 
-	public String getUserName() {
-		return userName.getText();
-	}
+    public String getUserName() {
+        find(detailInfo).click();
+        return find(userName).getText();
+    }
 
-	public void search(String content) {
-		search.sendKeys(content);
-		search.sendKeys(Keys.ENTER);
-	}
+    public void logout() {
+        find(detailInfo).click();
+        find(logout).click();
+    }
+
+    public SearchPage search(String keyword) {
+        WebElement searchElement = find(search);
+        searchElement.clear();
+        searchElement.sendKeys(keyword);
+        searchElement.sendKeys(Keys.ENTER);
+        return new SearchPage();
+    }
+
 
 }

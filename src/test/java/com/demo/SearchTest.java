@@ -1,16 +1,14 @@
 package com.demo;
 
-import com.demo.common.Constants;
 import com.demo.page.AccountPage;
 import com.demo.page.HomePage;
 import com.demo.page.LoginPage;
+import com.demo.page.SearchPage;
 import org.assertj.core.api.Assertions;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class SearchTest {
-    private HomePage homePage;
+public class SearchTest extends BaseTest {
 
     @BeforeMethod
     public void HomePage() {
@@ -18,26 +16,33 @@ public class SearchTest {
     }
 
     @Test
+    public void homePageSearchHasResult() {
+        SearchPage searchPage = homePage.search("TDD");
+        Assertions.assertThat(searchPage.getResult()).contains(
+                "repository result");
+    }
+
+    @Test
+    public void homePageSearchHasNoResult() {
+        String searchContent = "2523test";
+        SearchPage searchPage = homePage.search(searchContent);
+        Assertions.assertThat(searchPage.getNoResultMsg()).contains(
+                searchContent);
+
+    }
+
+    @Test
     public void loginSearchHasResults() {
         //登录
         LoginPage loginPage = homePage.navigateToLoginPage();
-        AccountPage accountPage = loginPage.loginSuccess("&&", "111");
-        Assertions.assertThat("GitHub"
-                .equals(accountPage.getTitle()));
-
-
-        //查询
-//        SearchPage searchPage=
-//        SearchParameter searchParameter = new SearchParameter();
-//        searchParameter.setSearchContent("test");
-//        SearchFlow searchFlow = new SearchFlow(searchParameter);
-//        searchFlow.withStartPage(loginFlow.getEndPage()).execute();
+        AccountPage accountPage = loginPage.loginSuccess("XX@sina.com", "xx");
+        //查询退出
+        SearchPage searchPage = accountPage.search("TDD");
+        Assertions.assertThat(searchPage.getResult()).contains(
+                "repository result");
+        accountPage.logout();
 
     }
 
-    @AfterClass
-    public void after() {
-        homePage.close();
-    }
 
 }
